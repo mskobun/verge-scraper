@@ -12,12 +12,13 @@ app = Flask(__name__)
 
 # Redis setup with Heroku Redis URL support
 redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
+# Stupid Heroku workaround https://stackoverflow.com/questions/65042551/ssl-certification-verify-failed-on-heroku-redis
+redis_url += "?ssl_cert_reqs=none"
 redis_client = redis.from_url(redis_url, decode_responses=True)
 
 REQUEST_DELAY = float(os.getenv("SCRAPER_REQUEST_DELAY", "0.2"))
-CURRENT_MONTH_CACHE_EXPIRY = int(
-    os.getenv("CURRENT_MONTH_CACHE_EXPIRY", str(24 * 60 * 60))
-)
+# 1 hour
+CURRENT_MONTH_CACHE_EXPIRY = int(os.getenv("CURRENT_MONTH_CACHE_EXPIRY", str(60 * 60)))
 
 
 def get_date_range():
