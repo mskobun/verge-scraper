@@ -42,7 +42,7 @@ heroku create your-app-name
 
 3. Add Redis add-on:
 ```bash
-heroku addons:create heroku-redis:hobby-dev
+heroku addons:create heroku-redis:mini
 ```
 
 4. Configure environment variables:
@@ -55,20 +55,9 @@ heroku config:set CURRENT_MONTH_CACHE_EXPIRY=86400
 ```bash
 git add .
 git commit -m "Heroku deployment"
-git push heroku main
+git push heroku master
 ```
-
-Note: If you're using a different branch:
-```bash
-git push heroku your-branch:main
-```
-
-6. Scale the web dyno:
-```bash
-heroku ps:scale web=1
-```
-
-7. Open the app:
+6. Open the app:
 ```bash
 heroku open
 ```
