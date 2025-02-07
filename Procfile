@@ -1,0 +1,1 @@
+web: gunicorn verge_scraper.app:app 
